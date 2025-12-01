@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Restaurant 2 — Menu</title>
+    <link rel="stylesheet" href="/assets/styles/menu.css" />
+  </head>
+  <body>
+    <header class="utility">
+      <a href="/" class="back-link" aria-label="Back to restaurants">← Back</a>
+      <nav class="icons" aria-label="Quick actions">
+        <a class="icon" href="#" aria-label="Cart" title="Cart">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zm10
+                         0c-1.1 0-1.99.9-1.99 2S15.9 22 17 22s2-.9 2-2-.9-2-2-2zM7.16 14h9.45
+                         c.75 0 1.4-.41 1.73-1.03l3.24-6.32A1 1 0 0 0 20.66 5H6.21L5.27 3H2v2h2l3.6
+                         7.59-1.35 2.44A2 2 0 0 0 8 18h12v-2z"/>
+              </svg>
+        </a>
+        <a class="icon" href="#" aria-label="Profile" title="Profile">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="8" r="4"></circle>
+            <path d="M4 20c0-4.42 3.58-8 8-8s8 3.58 8 8"></path>
+          </svg>
+        </a>
+      </nav>
+    </header>
+
+    <section class="header-row">
+        <span class="chip">Restaurant 2</span>
+        <div class="tabs" role="tablist" aria-label="Restaurant sections">
+          <a role="tab" aria-selected="true" tabindex="0" class="tab" href="#">Menu</a>
+        </div>
+      </section>
+
+    <div class="split">
+      <!-- LEFT: Menu -->
+      <main class="menu-pane" aria-label="Menu items">
+        <!-- 1 -->
+        <article class="menu-item">
+          <div class="thumb">
+            <img src="/assets/images/cheeseburger.jpg" alt="Classic Cheeseburger" loading="lazy">
+          </div>
+          <div class="details">
+            <h3 class="title">Classic Cheeseburger</h3>
+            <p class="desc">
+              1/4 lb beef patty, American cheese, pickles, ketchup & mustard on a toasted bun.
+            </p>
+          </div>
+          <div class="price" data-price="5.49">$5.49</div>
+          <button class="add-to-cart" data-name="Classic Cheeseburger" data-price="5.49">Add to Cart</button>
+        </article>
+
+        <!-- 2 -->
+        <article class="menu-item">
+          <div class="thumb">
+            <img src="/assets/images/double.jpeg" alt="Double Value Burger" loading="lazy">
+          </div>
+          <div class="details">
+            <h3 class="title">Double Value Burger</h3>
+            <p class="desc">
+              Two 1/4 lb patties, melty American cheese, pickles, and house burger sauce.
+            </p>
+          </div>
+          <div class="price" data-price="6.99">$6.99</div>
+          <button class="add-to-cart" data-name="Double Value Burger" data-price="6.99">Add to Cart</button>
+        </article>
+
+        <!-- 3 -->
+        <article class="menu-item">
+          <div class="thumb">
+            <img src="/assets/images/bbq-bacon-burger.jpeg" alt="BBQ Bacon Burger" loading="lazy">
+          </div>
+          <div class="details">
+            <h3 class="title">BBQ Bacon Burger</h3>
+            <p class="desc">
+              Smoky BBQ sauce, crispy bacon, cheddar, and crunchy onions.
+            </p>
+          </div>
+          <div class="price" data-price="6.49">$6.49</div>
+          <button class="add-to-cart" data-name="BBQ Bacon Burger" data-price="6.49">Add to Cart</button>
+        </article>
+
+        <!-- 4 -->
+        <article class="menu-item">
+          <div class="thumb">
+            <img src="/assets/images/veggie-burger.jpeg" alt="Crispy Veggie Burger" loading="lazy">
+          </div>
+          <div class="details">
+            <h3 class="title">Crispy Veggie Burger</h3>
+            <p class="desc">
+              Breaded veggie patty, lettuce, tomato, onion, and mayo on a toasted bun.
+            </p>
+          </div>
+          <div class="price" data-price="5.99">$5.99</div>
+          <button class="add-to-cart" data-name="Crispy Veggie Burger" data-price="5.99">Add to Cart</button>
+        </article>
+
+        <!-- 5 -->
+        <article class="menu-item">
+          <div class="thumb">
+            <img src="/assets/images/slider.jpg" alt="Kids Slider 2-Pack" loading="lazy">
+          </div>
+          <div class="details">
+            <h3 class="title">Kids Slider 2-Pack</h3>
+            <p class="desc">
+              Two mini burgers with American cheese & ketchup. Perfect portion for little appetites.
+            </p>
+          </div>
+          <div class="price" data-price="3.99">$3.99</div>
+          <button class="add-to-cart" data-name="Kids Slider 2-Pack" data-price="3.99">Add to Cart</button>
+        </article>
+      </main>
+
+      <!-- RIGHT: Cart -->
+      <aside class="cart-pane" aria-label="Shopping cart">
+        <div class="cart-box">
+          <h2>Your Cart</h2>
+      
+          <ul id="cart-items" class="cart-items" aria-live="polite"></ul>
+      
+          <div class="cart-breakdown">
+            <div class="row">
+              <span>Subtotal:</span>
+              <span id="subtotal">$0.00</span>
+            </div>
+            <div class="row">
+              <span>Tax (8%):</span>
+              <span id="tax">$0.00</span>
+            </div>
+            <div class="row">
+              <span>Fees (20%):</span>
+              <span id="fees">$0.00</span>
+            </div>
+            <div class="row grand">
+              <span>Total:</span>
+              <strong id="grand-total">$0.00</strong>
+            </div>
+          </div>
+      
+          <div class="cart-actions">
+            <button id="submit-order" class="submit-order" type="button">Submit Order</button>
+            <button id="clear-cart" class="clear-cart" type="button">Clear Cart</button>
+          </div>
+        </div>
+      </aside>
+      
+
+      <script>
+        (function () {
+          // Data store
+          let cart = [];
+          let nextId = 1;
+      
+          // DOM
+          const itemsList = document.getElementById('cart-items');
+          const subtotalEl = document.getElementById('subtotal');
+          const taxEl = document.getElementById('tax');
+          const feesEl = document.getElementById('fees');
+          const grandEl = document.getElementById('grand-total');
+          const clearBtn = document.getElementById('clear-cart');
+          const submitBtn = document.getElementById('submit-order');
+      
+          // Config (assumes both are on subtotal)
+          const TAX_RATE = 0.08;   // 8%
+          const FEES_RATE = 0.20;  // 20%
+      
+          function format(n) {
+            return `$${n.toFixed(2)}`;
+          }
+      
+          function calcTotals() {
+            const subtotal = cart.reduce((sum, it) => sum + it.price, 0);
+            const tax = subtotal * TAX_RATE;
+            const fees = subtotal * FEES_RATE;
+            const total = subtotal + tax + fees;
+            return { subtotal, tax, fees, total };
+          }
+      
+          function render() {
+            // Lines
+            itemsList.innerHTML = '';
+            cart.forEach(item => {
+              const li = document.createElement('li');
+              li.className = 'cart-line';
+      
+              const name = document.createElement('span');
+              name.className = 'line-name';
+              name.textContent = item.name;
+      
+              const price = document.createElement('span');
+              price.className = 'line-price';
+              price.textContent = format(item.price);
+      
+              const del = document.createElement('button');
+              del.className = 'remove-item';
+              del.type = 'button';
+              del.setAttribute('aria-label', `Remove ${item.name}`);
+              del.dataset.id = String(item.id);
+              del.textContent = '✖';
+      
+              li.appendChild(name);
+              li.appendChild(price);
+              li.appendChild(del);
+              itemsList.appendChild(li);
+            });
+      
+            // Totals
+            const { subtotal, tax, fees, total } = calcTotals();
+            subtotalEl.textContent = format(subtotal);
+            taxEl.textContent = format(tax);
+            feesEl.textContent = format(fees);
+            grandEl.textContent = format(total);
+          }
+      
+          // Add-to-cart (delegated)
+          document.addEventListener('click', (e) => {
+            const btn = e.target.closest('.add-to-cart');
+            if (!btn) return;
+      
+            const name = btn.getAttribute('data-name') || 'Item';
+            const price = parseFloat(btn.getAttribute('data-price') || '0');
+            cart.push({ id: nextId++, name, price });
+            render();
+          });
+      
+          // Remove line (delegated)
+          document.addEventListener('click', (e) => {
+            const btn = e.target.closest('.remove-item');
+            if (!btn) return;
+            const id = parseInt(btn.dataset.id, 10);
+            cart = cart.filter(it => it.id !== id);
+            render();
+          });
+      
+          // Clear cart
+          clearBtn.addEventListener('click', () => {
+            cart = [];
+            render();
+          });
+      
+          // Submit order
+          submitBtn.addEventListener('click', () => {
+            if (cart.length === 0) {
+              alert('Your cart is empty.');
+              return;
+            }
+            const { subtotal, tax, fees, total } = calcTotals();
+            // Replace this with a real POST when you hook up a backend
+            alert([
+              'Order submitted!',
+              `Items: ${cart.length}`,
+              `Subtotal: ${format(subtotal)}`,
+              `Tax (8%): ${format(tax)}`,
+              `Fees (20%): ${format(fees)}`,
+              `Total: ${format(total)}`
+            ].join('\n'));
+      
+            // Optionally clear after submit
+            cart = [];
+            render();
+          });
+      
+          // Initial render
+          render();
+        })();
+      </script>
+      
+  </body>
+</html>

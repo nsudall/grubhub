@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Restaurant 6 — Menu</title>
+    <link rel="stylesheet" href="/assets/styles/menu.css" />
+  </head>
+  <body>
+    <header class="utility">
+      <a href="/" class="back-link" aria-label="Back to restaurants">← Back</a>
+      <nav class="icons" aria-label="Quick actions">
+        <a class="icon" href="#" aria-label="Cart" title="Cart">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zm10
+                     0c-1.1 0-1.99.9-1.99 2S15.9 22 17 22s2-.9 2-2-.9-2-2-2zM7.16 14h9.45
+                     c.75 0 1.4-.41 1.73-1.03l3.24-6.32A1 1 0 0 0 20.66 5H6.21L5.27 3H2v2h2l3.6
+                     7.59-1.35 2.44A2 2 0 0 0 8 18h12v-2z"/>
+          </svg>
+        </a>
+        <a class="icon" href="#" aria-label="Profile" title="Profile">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="8" r="4"></circle>
+            <path d="M4 20c0-4.42 3.58-8 8-8s8 3.58 8 8"></path>
+          </svg>
+        </a>
+      </nav>
+    </header>
+
+    <section class="header-row">
+      <span class="chip">Restaurant 1</span>
+      <div class="tabs" role="tablist" aria-label="Restaurant sections">
+        <a role="tab" aria-selected="true" tabindex="0" class="tab" href="#">Menu</a>
+      </div>
+    </section>
+
+    <div class="split">
+      <!-- LEFT: Menu -->
+      <main class="menu-pane" aria-label="Menu items">
+        <!-- 1 -->
+        <article class="menu-item">
+          <div class="thumb">
+            <img src="/assets/images/supreme.jpeg" alt="Pepperoni Supreme pizza" loading="lazy">
+          </div>
+          <div class="details">
+            <h3 class="title">Item 1</h3>
+            <p class="desc">
+              description
+            </p>
+          </div>
+          <div class="price" data-price="14.99">$14.99</div>
+          <button class="add-to-cart" data-name="Pepperoni Supreme" data-price="14.99">Add to Cart</button>
+        </article>
+
+        <!-- 2 -->
+        <article class="menu-item">
+          <div class="thumb">
+            <img src="/assets/images/cbr.jpeg" alt="Chicken Bacon Ranch pizza" loading="lazy">
+          </div>
+          <div class="details">
+            <h3 class="title">Item 2</h3>
+            <p class="desc">
+              description
+            </p>
+          </div>
+          <div class="price" data-price="16.49">$16.49</div>
+          <button class="add-to-cart" data-name="Chicken Bacon Ranch" data-price="16.49">Add to Cart</button>
+        </article>
+
+        <!-- 3 -->
+        <article class="menu-item">
+          <div class="thumb">
+            <img src="/assets/images/bbq.jpeg" alt="BBQ Chicken pizza" loading="lazy">
+          </div>
+          <div class="details">
+            <h3 class="title">Item 3</h3>
+            <p class="desc">
+              description
+            </p>
+          </div>
+          <div class="price" data-price="15.99">$15.99</div>
+          <button class="add-to-cart" data-name="BBQ Chicken" data-price="15.99">Add to Cart</button>
+        </article>
+
+        <!-- 4 -->
+        <article class="menu-item">
+          <div class="thumb">
+            <img src="/assets/images/meatball.jpeg" alt="Meatball Parm Pie" loading="lazy">
+          </div>
+          <div class="details">
+            <h3 class="title">Item 4</h3>
+            <p class="desc">
+              description
+            </p>
+          </div>
+          <div class="price" data-price="16.99">$16.99</div>
+          <button class="add-to-cart" data-name="Meatball Parm Pie" data-price="16.99">Add to Cart</button>
+        </article>
+
+        <!-- 5 -->
+        <article class="menu-item">
+          <div class="thumb">
+            <img src="/assets/images/veggie.jpeg" alt="Veggie Lovers pizza" loading="lazy">
+          </div>
+          <div class="details">
+            <h3 class="title">Item 5</h3>
+            <p class="desc">
+              description
+            </p>
+          </div>
+          <div class="price" data-price="14.49">$14.49</div>
+          <button class="add-to-cart" data-name="Veggie Lovers" data-price="14.49">Add to Cart</button>
+        </article>
+      </main>
+
+      <!-- RIGHT: Cart -->
+      <aside class="cart-pane" aria-label="Shopping cart">
+        <div class="cart-box">
+          <h2>Your Cart</h2>
+      
+          <ul id="cart-items" class="cart-items" aria-live="polite"></ul>
+      
+          <div class="cart-breakdown">
+            <div class="row">
+              <span>Subtotal:</span>
+              <span id="subtotal">$0.00</span>
+            </div>
+            <div class="row">
+              <span>Tax (8%):</span>
+              <span id="tax">$0.00</span>
+            </div>
+            <div class="row">
+              <span>Fees (20%):</span>
+              <span id="fees">$0.00</span>
+            </div>
+            <div class="row grand">
+              <span>Total:</span>
+              <strong id="grand-total">$0.00</strong>
+            </div>
+          </div>
+      
+          <div class="cart-actions">
+            <button id="submit-order" class="submit-order" type="button">Submit Order</button>
+            <button id="clear-cart" class="clear-cart" type="button">Clear Cart</button>
+          </div>
+        </div>
+      </aside>
+      
+
+      <script>
+        (function () {
+          // Data store
+          let cart = [];
+          let nextId = 1;
+      
+          // DOM
+          const itemsList = document.getElementById('cart-items');
+          const subtotalEl = document.getElementById('subtotal');
+          const taxEl = document.getElementById('tax');
+          const feesEl = document.getElementById('fees');
+          const grandEl = document.getElementById('grand-total');
+          const clearBtn = document.getElementById('clear-cart');
+          const submitBtn = document.getElementById('submit-order');
+      
+          // Config (assumes both are on subtotal)
+          const TAX_RATE = 0.08;   // 8%
+          const FEES_RATE = 0.20;  // 20%
+      
+          function format(n) {
+            return `$${n.toFixed(2)}`;
+          }
+      
+          function calcTotals() {
+            const subtotal = cart.reduce((sum, it) => sum + it.price, 0);
+            const tax = subtotal * TAX_RATE;
+            const fees = subtotal * FEES_RATE;
+            const total = subtotal + tax + fees;
+            return { subtotal, tax, fees, total };
+          }
+      
+          function render() {
+            // Lines
+            itemsList.innerHTML = '';
+            cart.forEach(item => {
+              const li = document.createElement('li');
+              li.className = 'cart-line';
+      
+              const name = document.createElement('span');
+              name.className = 'line-name';
+              name.textContent = item.name;
+      
+              const price = document.createElement('span');
+              price.className = 'line-price';
+              price.textContent = format(item.price);
+      
+              const del = document.createElement('button');
+              del.className = 'remove-item';
+              del.type = 'button';
+              del.setAttribute('aria-label', `Remove ${item.name}`);
+              del.dataset.id = String(item.id);
+              del.textContent = '✖';
+      
+              li.appendChild(name);
+              li.appendChild(price);
+              li.appendChild(del);
+              itemsList.appendChild(li);
+            });
+      
+            // Totals
+            const { subtotal, tax, fees, total } = calcTotals();
+            subtotalEl.textContent = format(subtotal);
+            taxEl.textContent = format(tax);
+            feesEl.textContent = format(fees);
+            grandEl.textContent = format(total);
+          }
+      
+          // Add-to-cart (delegated)
+          document.addEventListener('click', (e) => {
+            const btn = e.target.closest('.add-to-cart');
+            if (!btn) return;
+      
+            const name = btn.getAttribute('data-name') || 'Item';
+            const price = parseFloat(btn.getAttribute('data-price') || '0');
+            cart.push({ id: nextId++, name, price });
+            render();
+          });
+      
+          // Remove line (delegated)
+          document.addEventListener('click', (e) => {
+            const btn = e.target.closest('.remove-item');
+            if (!btn) return;
+            const id = parseInt(btn.dataset.id, 10);
+            cart = cart.filter(it => it.id !== id);
+            render();
+          });
+      
+          // Clear cart
+          clearBtn.addEventListener('click', () => {
+            cart = [];
+            render();
+          });
+      
+          // Submit order
+          submitBtn.addEventListener('click', () => {
+            if (cart.length === 0) {
+              alert('Your cart is empty.');
+              return;
+            }
+            const { subtotal, tax, fees, total } = calcTotals();
+            // Replace this with a real POST when you hook up a backend
+            alert([
+              'Order submitted!',
+              `Items: ${cart.length}`,
+              `Subtotal: ${format(subtotal)}`,
+              `Tax (8%): ${format(tax)}`,
+              `Fees (20%): ${format(fees)}`,
+              `Total: ${format(total)}`
+            ].join('\n'));
+      
+            // Optionally clear after submit
+            cart = [];
+            render();
+          });
+      
+          // Initial render
+          render();
+        })();
+      </script>
+      
+  </body>
+</html>
