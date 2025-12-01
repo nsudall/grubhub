@@ -6,6 +6,7 @@ use app\controllers\MainController;
 use app\controllers\UserController;
 use app\controllers\ReviewController;
 use app\controllers\SearchController;
+use app\controllers\OrderController;
 
 class Router {
     public $uriArray;
@@ -16,6 +17,7 @@ class Router {
         $this->handleUserRoutes();
         $this->handleReviewRoutes();
         $this->handleSearchRoutes();
+        $this->handleOrderRoutes();
     }
 
     protected function routeSplit() {
@@ -100,6 +102,13 @@ class Router {
             } else {
                 $searchController->getAllSearchsByNameOrType();
             }
+        }
+    }
+
+    protected function handleOrderRoutes() {
+        if ($this->uriArray[1] === 'api' && $this->uriArray[2] === 'orders' && $_SERVER['REQUEST_METHOD'] === 'POST') {
+            $orderController = new OrderController();
+            $orderController->createOrder();
         }
     }
 
