@@ -11,24 +11,25 @@ require '../app/models/Review.php';
 require '../app/controllers/ReviewController.php';
 require '../app/models/Search.php';
 require '../app/controllers/SearchController.php';
+require '../app/models/Order.php';
+require '../app/controllers/OrderController.php';
 
 
 //set up env variables
-if($_SERVER['SERVER_NAME'] == 'localhost') {
-    $env = parse_ini_file('../.env');
-    /** database config **/
-    define('DBNAME', $env['DBNAME']);
-    define('DBHOST', $env['DBHOST']);
-    define('DBUSER', $env['DBUSER']);
-    define('DBPASS', $env['DBPASS']);
-    define('DBPORT', $env['DBPORT']);
+$env = file_exists('../.env') ? parse_ini_file('../.env') : [];
 
-} else {
-    /** database config **/
-    define('DBNAME', getenv('DBNAME'));
-    define('DBHOST', getenv('DBHOST'));
-    define('DBUSER', getenv('DBUSER'));
-    define('DBPASS', getenv('DBPASS'));
-    define('DBPORT', getenv('DBPORT'));
+$dbName = getenv('DBNAME') ?: ($env['DBNAME'] ?? null);
+$dbHost = getenv('DBHOST') ?: ($env['DBHOST'] ?? null);
+$dbUser = getenv('DBUSER') ?: ($env['DBUSER'] ?? null);
+$dbPass = getenv('DBPASS') ?: ($env['DBPASS'] ?? null);
+$dbPort = getenv('DBPORT') ?: ($env['DBPORT'] ?? 3306);
+
+define('DBNAME', $dbName);
+define('DBHOST', $dbHost);
+define('DBUSER', $dbUser);
+define('DBPASS', $dbPass);
+define('DBPORT', $dbPort);
+
+if($_SERVER['SERVER_NAME'] != 'localhost') {
     define('ROOT', 'https://arcane-eyrie-22455-a4ba415920ae.herokuapp.com/');
 }

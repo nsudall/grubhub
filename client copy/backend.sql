@@ -35,3 +35,5 @@ INSERT INTO restaurants (name, description, price, stars, image, link)
 VALUES ('Casa del Taco', 'Mexican Tacos', '$$', '★★★★☆', 'taco.jpeg', 'goToTacoMenu');
 INSERT INTO restaurants (name, description, price, stars, image, link)
 VALUES ('The Curry Leaf', 'Indian Curry', '$$$', '★★★★☆', 'curry.jpeg', 'goToCurryMenu');
+INSERT INTO restaurants (name, description, price, stars, image, link)
+VALUES ('Pasta Paradiso', 'Italian Pasta', '$$$$', '★★★★★', 'pasta.jpeg', 'goToPastaMenu');
