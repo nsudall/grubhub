@@ -67,6 +67,7 @@ class OrderController extends Controller
             ]);
             exit();
         }
+        $order->createOrder($orderData);
 
         http_response_code(201);
         echo json_encode([
