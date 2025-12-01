@@ -57,6 +57,16 @@ class OrderController extends Controller
 
         $orderData = $this->validateOrder($payload);
         $order = new Order();
+        $created = $order->createOrder($orderData);
+
+        if ($created === false) {
+            http_response_code(500);
+            echo json_encode([
+                'success' => false,
+                'message' => 'Could not save order.'
+            ]);
+            exit();
+        }
         $order->createOrder($orderData);
 
         http_response_code(201);

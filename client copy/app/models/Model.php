@@ -19,14 +19,16 @@ abstract class Model {
         $con = $this->connect();
         $stm = $con->prepare($query);
         $check = $stm->execute($data);
-        if ($check) {
-            //return as an associated array
-            $result = $stm->fetchAll(\PDO::FETCH_ASSOC);
-            if (is_array($result) && count($result)) {
-                return $result;
-            }
+        if (!$check) {
+            return false;
         }
-        return false;
+
+        // For SELECT queries, return rows; otherwise return affected rows
+        if ($stm->columnCount() > 0) {
+            return $stm->fetchAll(\PDO::FETCH_ASSOC);
+        }
+
+        return $stm->rowCount();
     }
 
 }
