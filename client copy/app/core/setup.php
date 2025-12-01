@@ -11,6 +11,8 @@ require '../app/models/Review.php';
 require '../app/controllers/ReviewController.php';
 require '../app/models/Search.php';
 require '../app/controllers/SearchController.php';
+require '../app/models/Order.php';
+require '../app/controllers/OrderController.php';
 
 
 //set up env variables

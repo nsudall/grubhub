@@ -161,6 +161,8 @@
           const grandEl = document.getElementById('grand-total');
           const clearBtn = document.getElementById('clear-cart');
           const submitBtn = document.getElementById('submit-order');
+          const RESTAURANT_ID = 4;
+          const RESTAURANT_NAME = 'Restaurant 4';
       
           // Config (assumes both are on subtotal)
           const TAX_RATE = 0.08;   // 8%
@@ -241,25 +243,51 @@
           });
       
           // Submit order
-          submitBtn.addEventListener('click', () => {
+          submitBtn.addEventListener('click', async () => {
             if (cart.length === 0) {
               alert('Your cart is empty.');
               return;
             }
             const { subtotal, tax, fees, total } = calcTotals();
-            // Replace this with a real POST when you hook up a backend
-            alert([
-              'Order submitted!',
-              `Items: ${cart.length}`,
-              `Subtotal: ${format(subtotal)}`,
-              `Tax (8%): ${format(tax)}`,
-              `Fees (20%): ${format(fees)}`,
-              `Total: ${format(total)}`
-            ].join('\n'));
-      
-            // Optionally clear after submit
-            cart = [];
-            render();
+            try {
+              const response = await fetch('/api/orders', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                  restId: RESTAURANT_ID,
+                  subtotal,
+                  tax,
+                  fees,
+                  total,
+                  profit: fees
+                })
+              });
+
+              const result = await response.json().catch(() => ({}));
+
+              if (!response.ok || !result.success) {
+                throw new Error(result.message || 'Unable to submit order.');
+              }
+
+              alert([
+                'Order submitted!',
+                `Restaurant: ${RESTAURANT_NAME}`,
+                `Items: ${cart.length}`,
+                `Subtotal: ${format(subtotal)}`,
+                `Tax (8%): ${format(tax)}`,
+                `Fees (20%): ${format(fees)}`,
+                `Total: ${format(total)}`
+              ].join('\n'));
+
+              // Optionally clear after submit
+              cart = [];
+              render();
+            } catch (error) {
+              console.error(error);
+              alert('Failed to submit order. Please try again.');
+            }
           });
       
           // Initial render
